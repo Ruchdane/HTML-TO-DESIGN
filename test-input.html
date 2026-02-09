@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Habit Tracker - Serene</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&amp;family=Inter:wght@300;400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        serene: {
+                            lavender: "#F3F1F8",
+                            mint: "#F0F7F4",
+                            text: "#5A5A5E",
+                            subtle: "#9A9A9E"
+                        }
+                    },
+                    fontFamily: {
+                        serif: ["'Playfair Display'", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .watercolor-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: 0;
+        }
+        .blob-1 {
+            width: 300px;
+            height: 300px;
+            background: #E0E7FF;
+            top: -50px;
+            left: -50px;
+        }
+        .blob-2 {
+            width: 350px;
+            height: 350px;
+            background: #D1FAE5;
+            bottom: 10%;
+            right: -100px;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-stone-50 min-h-screen flex items-center justify-center p-4">
+<div class="relative w-full max-w-[390px] h-[844px] bg-serene-lavender rounded-[50px] overflow-hidden shadow-2xl border-[8px] border-white/50">
+<div class="absolute top-0 w-full px-8 py-4 flex justify-between items-center z-[60]">
+<span class="text-sm font-medium text-serene-text/80">9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-symbols-outlined text-[18px] text-serene-text/60">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-[18px] text-serene-text/60">wifi</span>
+<span class="material-symbols-outlined text-[18px] text-serene-text/60">battery_very_low</span>
+</div>
+</div>
+<div class="relative h-full w-full">
+<div class="absolute inset-0 bg-serene-lavender z-50 flex flex-col justify-center px-12 transition-opacity duration-1000" id="splash">
+<div class="watercolor-blob blob-1"></div>
+<div class="watercolor-blob blob-2"></div>
+<div class="relative z-10 text-right space-y-2 mt-20">
+<p class="text-serene-subtle font-serif italic text-2xl lowercase tracking-wide">track</p>
+<h1 class="text-serene-text font-serif text-5xl font-light tracking-tight leading-none">your habit.</h1>
+</div>
+<div class="absolute bottom-24 left-12 right-12 flex justify-center z-10">
+<div class="w-px h-16 bg-gradient-to-b from-serene-subtle/40 to-transparent"></div>
+</div>
+<button class="absolute inset-0 w-full h-full bg-transparent z-20 cursor-pointer" onclick="document.getElementById('splash').style.opacity = '0'; setTimeout(() =&gt; document.getElementById('splash').style.display='none', 1000)"></button>
+</div>
+<div class="h-full w-full bg-serene-mint/30 flex flex-col">
+<div class="pt-20 px-10 pb-6 flex justify-between items-end">
+<div>
+<p class="text-[10px] uppercase tracking-[0.2em] text-serene-subtle mb-1">Today</p>
+<h2 class="text-2xl font-serif text-serene-text">Overview</h2>
+</div>
+<button class="w-12 h-12 flex items-center justify-center rounded-full bg-white shadow-sm text-serene-text">
+<span class="material-symbols-outlined font-light">add</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto px-10 space-y-16 no-scrollbar pb-32">
+<section>
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-xl font-serif text-serene-text/90">sleep 8hrs</h2>
+<span class="text-[10px] uppercase tracking-widest text-serene-subtle">January</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex flex-col items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-serene-text flex items-center justify-center text-[11px] font-light text-white shadow-lg shadow-serene-text/20">10</div>
+<span class="text-[10px] text-serene-subtle font-medium">M</span>
+</div>
+<div class="flex flex-col items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-serene-text flex items-center justify-center text-[11px] font-light text-white shadow-lg shadow-serene-text/20">11</div>
+<span class="text-[10px] text-serene-subtle font-medium">T</span>
+</div>
+<div class="flex flex-col items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-serene-text flex items-center justify-center text-[11px] font-light text-white shadow-lg shadow-serene-text/20">12</div>
+<span class="text-[10px] text-serene-subtle font-medium">W</span>
+</div>
+<div class="flex flex-col items-center gap-4 opacity-30">
+<div class="w-10 h-10 rounded-full border border-serene-text/20 flex items-center justify-center text-[11px] font-light text-serene-text">13</div>
+<span class="text-[10px] text-serene-subtle font-medium">T</span>
+</div>
+<div class="flex flex-col items-center gap-4 opacity-30">
+<div class="w-10 h-10 rounded-full border border-serene-text/20 flex items-center justify-center text-[11px] font-light text-serene-text">14</div>
+<span class="text-[10px] text-serene-subtle font-medium">F</span>
+</div>
+</div>
+</section>
+<section>
+<div class="flex items-center justify-between mb-8">
+<h2 class="text-xl font-serif text-serene-text/90">meditate</h2>
+<span class="text-[10px] uppercase tracking-widest text-serene-subtle">January</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex flex-col items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-serene-text flex items-center justify-center text-[11px] font-light text-white">10</div>
+<span class="text-[10px] text-serene-subtle font-medium">M</span>
+</div>
+<div class="flex flex-col items-center gap-4 opacity-30">
+<div class="w-10 h-10 rounded-full border border-serene-text/20 flex items-center justify-center text-[11px] font-light text-serene-text">11</div>
+<span class="text-[10px] text-serene-subtle font-medium">T</span>
+</div>
+<div class="flex flex-col items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-serene-text flex items-center justify-center text-[11px] font-light text-white">12</div>
+<span class="text-[10px] text-serene-subtle font-medium">W</span>
+</div>
+<div class="flex flex-col items-center gap-4 opacity-30">
+<div class="w-10 h-10 rounded-full border border-serene-text/20 flex items-center justify-center text-[11px] font-light text-serene-text">13</div>
+<span class="text-[10px] text-serene-subtle font-medium">T</span>
+</div>
+<div class="flex flex-col items-center gap-4 opacity-30">
+<div class="w-10 h-10 rounded-full border border-serene-text/20 flex items-center justify-center text-[11px] font-light text-serene-text">14</div>
+<span class="text-[10px] text-serene-subtle font-medium">F</span>
+</div>
+</div>
+</section>
+</div>
+<div class="absolute bottom-0 w-full bg-white/40 backdrop-blur-xl border-t border-white/40 px-12 py-8 flex justify-between items-center z-40">
+<button class="text-serene-text">
+<span class="material-symbols-outlined font-light text-2xl">home_max</span>
+</button>
+<button class="text-serene-subtle/60 hover:text-serene-text transition-colors">
+<span class="material-symbols-outlined font-light text-2xl">grain</span>
+</button>
+<button class="text-serene-subtle/60 hover:text-serene-text transition-colors">
+<span class="material-symbols-outlined font-light text-2xl">eco</span>
+</button>
+</div>
+</div>
+<div class="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-serene-text/10 rounded-full z-50"></div>
+</div>
+</div>
+
+</body></html>

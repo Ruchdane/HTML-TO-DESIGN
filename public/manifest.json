@@ -1,0 +1,11 @@
+{
+  "name": "HTML TO DESIGN",
+  "description": "Convert HTML code into Penpot design layers with full visual fidelity",
+  "code": "/plugin.js",
+  "icon": "/icon.png",
+  "permissions": [
+    "content:read",
+    "content:write",
+    "allow:downloads"
+  ]
+}
