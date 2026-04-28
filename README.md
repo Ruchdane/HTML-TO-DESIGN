@@ -1,5 +1,5 @@
 # HTML-TO-DESIGN(PENPOT)
-![Cover](public/assets/metaball_cover_penpot.jpg)
+![Cover](public/cover.jpg)
 
 It converts a coded prototype or landing page into a Penpot design file for iteration
 
