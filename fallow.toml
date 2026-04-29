@@ -1,0 +1,35 @@
+# fallow.toml - Codebase analysis configuration
+# See https://docs.fallow.tools for documentation
+
+entry = ["src/index.{ts,tsx,js,jsx}", "src/main.{ts,tsx,js,jsx}", "src/plugin.ts", "svelte.config.js", "vite.config.ts"]
+
+[[boundaries.zones]]
+name = "shared"
+patterns = ["src/lib/types/**"]
+
+[[boundaries.zones]]
+name = "ui"
+patterns = ["src/**/*.svelte", "src/**/*.css", "src/main.ts", "src/lib/parser/**"]
+
+[[boundaries.zones]]
+name = "plugin"
+patterns = ["src/plugin.ts", "src/lib/converter/**"]
+
+[[boundaries.rules]]
+from = "shared"
+allow = []
+
+[[boundaries.rules]]
+from = "ui"
+allow = ["shared"]
+
+[[boundaries.rules]]
+from = "plugin"
+allow = ["shared"]
+
+# Per-issue-type severity: "error" (fail CI), "warn" (report only), "off" (ignore)
+[rules]
+unused-exports = "error"
+duplicate-exports = "error"
+coverage-gaps = "error"
+unused-dev-dependencies = "error"

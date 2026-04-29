@@ -24,7 +24,7 @@ import type {
  * Parse any CSS color string (rgb, rgba, hex) into hex + opacity.
  * Falls back to transparent black on failure.
  */
-export function parseColor(raw: string): NormalizedColor {
+function parseColor(raw: string): NormalizedColor {
   if (!raw || raw === 'transparent' || raw === 'none') {
     return { hex: '#000000', opacity: 0 };
   }
@@ -97,7 +97,7 @@ function clamp01(n: number): number {
 // ── Number Parsing ─────────────────────────────────────────────
 
 /** Extract a pixel value from a CSS string like "16px", default 0 */
-export function parsePx(raw: string | null | undefined): number {
+function parsePx(raw: string | null | undefined): number {
   if (!raw) return 0;
   const n = parseFloat(raw);
   return isFinite(n) ? n : 0;
@@ -109,7 +109,7 @@ export function parsePx(raw: string | null | undefined): number {
  * Parse a CSS linear-gradient() or radial-gradient() string into
  * a NormalizedGradient.  Returns null if the string isn't a gradient.
  */
-export function parseGradient(raw: string): NormalizedGradient | null {
+function parseGradient(raw: string): NormalizedGradient | null {
   if (!raw) return null;
 
   const linearMatch = raw.match(/linear-gradient\((.+)\)/);
@@ -279,7 +279,7 @@ function splitOutsideParens(s: string): string[] {
  * Parse a CSS box-shadow string into an array of NormalizedShadow.
  * Supports multiple shadows separated by commas.
  */
-export function parseShadows(raw: string): NormalizedShadow[] {
+function parseShadows(raw: string): NormalizedShadow[] {
   if (!raw || raw === 'none') return [];
 
   const shadows: NormalizedShadow[] = [];
@@ -334,7 +334,7 @@ function parseSingleShadow(raw: string): NormalizedShadow | null {
 // ── Border Parsing ─────────────────────────────────────────────
 
 /** Extract all four borders from computed styles */
-export function parseBorders(cs: CSSStyleDeclaration): NormalizedBorder[] {
+function parseBorders(cs: CSSStyleDeclaration): NormalizedBorder[] {
   const borders: NormalizedBorder[] = [];
 
   const sides = ['top', 'right', 'bottom', 'left'] as const;
@@ -384,7 +384,7 @@ function mapBorderStyle(raw: string): NormalizedBorder['style'] {
 
 // ── Border Radius ──────────────────────────────────────────────
 
-export function parseBorderRadius(cs: CSSStyleDeclaration): NormalizedBorderRadius {
+function parseBorderRadius(cs: CSSStyleDeclaration): NormalizedBorderRadius {
   return {
     topLeft: parsePx(cs.getPropertyValue('border-top-left-radius')),
     topRight: parsePx(cs.getPropertyValue('border-top-right-radius')),
@@ -451,7 +451,7 @@ function cleanFontFamily(raw: string): string {
  * Extract fills from the computed background styles.
  * Returns an array of fills (solid, gradient, and/or image).
  */
-export function parseFills(cs: CSSStyleDeclaration): NormalizedFill[] {
+function parseFills(cs: CSSStyleDeclaration): NormalizedFill[] {
   const fills: NormalizedFill[] = [];
 
   // 1. Check background-image for gradients or url()
@@ -483,7 +483,7 @@ export function parseFills(cs: CSSStyleDeclaration): NormalizedFill[] {
 
 // ── Flex Layout ────────────────────────────────────────────────
 
-export function parseFlexLayout(cs: CSSStyleDeclaration): NormalizedFlexLayout | undefined {
+function parseFlexLayout(cs: CSSStyleDeclaration): NormalizedFlexLayout | undefined {
   const display = cs.display;
   if (display !== 'flex' && display !== 'inline-flex') return undefined;
 

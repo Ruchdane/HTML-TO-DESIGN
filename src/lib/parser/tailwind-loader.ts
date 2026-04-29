@@ -60,7 +60,7 @@ async function fetchWithFallback(): Promise<string | null> {
 /**
  * Check if the Tailwind script has already been fetched and cached.
  */
-export function isTailwindCached(): boolean {
+function isTailwindCached(): boolean {
   return cachedScript !== null;
 }
 

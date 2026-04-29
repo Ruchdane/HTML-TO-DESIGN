@@ -1,6 +1,8 @@
 # HTML-TO-DESIGN
 ![Cover](public/cover.jpg)
-<a href="https://svelte.dev/"><img src="https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00"/></a>
+
+![Svelte](.github/badges/svelte.svg)
+![Fallow](.github/badges/health.svg)
 
 Converts a coded prototype or landing page into a Penpot design file for iteration
 - Imports HTML email templates into Penpot for visual editing

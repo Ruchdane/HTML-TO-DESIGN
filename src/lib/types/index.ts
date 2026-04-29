@@ -3,7 +3,7 @@
 // ============================================================
 
 /** The kind of Penpot shape a parsed node maps to */
-export type NodeKind = 'container' | 'text' | 'image' | 'svg' | 'leaf';
+export type NodeKind = "container" | "text" | "image" | "svg" | "leaf";
 
 /** Absolute bounding box in pixels, relative to the HTML root */
 export interface Bounds {
@@ -15,16 +15,16 @@ export interface Bounds {
 
 /** RGBA color in a format ready for Penpot */
 export interface NormalizedColor {
-  hex: string;      // e.g. "#ff5733"
-  opacity: number;  // 0‒1
+  hex: string; // e.g. "#ff5733"
+  opacity: number; // 0‒1
 }
 
 /** Border / stroke info */
 export interface NormalizedBorder {
   color: NormalizedColor;
   width: number;
-  style: 'solid' | 'dashed' | 'dotted' | 'none';
-  side: 'all' | 'top' | 'right' | 'bottom' | 'left';
+  style: "solid" | "dashed" | "dotted" | "none";
+  side: "all" | "top" | "right" | "bottom" | "left";
 }
 
 /** Shadow (from box-shadow) */
@@ -39,14 +39,14 @@ export interface NormalizedShadow {
 
 /** Gradient stop */
 export interface GradientStop {
-  color: string;   // hex
+  color: string; // hex
   opacity: number;
-  offset: number;  // 0‒1
+  offset: number; // 0‒1
 }
 
 /** Linear or radial gradient */
 export interface NormalizedGradient {
-  type: 'linear' | 'radial';
+  type: "linear" | "radial";
   startX: number;
   startY: number;
   endX: number;
@@ -57,7 +57,7 @@ export interface NormalizedGradient {
 
 /** Background fill – either solid, gradient, or image URL */
 export interface NormalizedFill {
-  kind: 'solid' | 'gradient' | 'image';
+  kind: "solid" | "gradient" | "image";
   color?: NormalizedColor;
   gradient?: NormalizedGradient;
   imageUrl?: string;
@@ -76,21 +76,27 @@ export interface NormalizedTypography {
   fontFamily: string;
   fontSize: number;
   fontWeight: string;
-  fontStyle: 'normal' | 'italic';
+  fontStyle: "normal" | "italic";
   lineHeight: number;
   letterSpacing: number;
-  textDecoration: 'none' | 'underline' | 'line-through';
-  textTransform: 'none' | 'uppercase' | 'lowercase' | 'capitalize';
-  textAlign: 'left' | 'center' | 'right' | 'justify';
+  textDecoration: "none" | "underline" | "line-through";
+  textTransform: "none" | "uppercase" | "lowercase" | "capitalize";
+  textAlign: "left" | "center" | "right" | "justify";
   color: NormalizedColor;
 }
 
 /** Flex layout properties (when display is flex) */
 export interface NormalizedFlexLayout {
-  direction: 'row' | 'row-reverse' | 'column' | 'column-reverse';
-  wrap: 'wrap' | 'nowrap';
-  alignItems: 'start' | 'end' | 'center' | 'stretch';
-  justifyContent: 'start' | 'end' | 'center' | 'space-between' | 'space-around' | 'space-evenly';
+  direction: "row" | "row-reverse" | "column" | "column-reverse";
+  wrap: "wrap" | "nowrap";
+  alignItems: "start" | "end" | "center" | "stretch";
+  justifyContent:
+    | "start"
+    | "end"
+    | "center"
+    | "space-between"
+    | "space-around"
+    | "space-evenly";
   gap: { row: number; column: number };
   padding: { top: number; right: number; bottom: number; left: number };
 }
@@ -102,7 +108,7 @@ export interface NormalizedStyles {
   borderRadius: NormalizedBorderRadius;
   shadows: NormalizedShadow[];
   opacity: number;
-  overflow: 'visible' | 'hidden' | 'scroll' | 'auto';
+  overflow: "visible" | "hidden" | "scroll" | "auto";
   flexLayout?: NormalizedFlexLayout;
 }
 
@@ -142,35 +148,39 @@ export interface ParsedNode {
 
 /** UI → plugin: convert this parsed tree into Penpot shapes */
 export interface ConvertMessage {
-  type: 'convert';
+  type: "convert";
   tree: ParsedNode[];
 }
 
 /** plugin → UI: report progress */
 export interface ProgressMessage {
-  type: 'progress';
+  type: "progress";
   completed: number;
   total: number;
   currentName: string;
 }
 
 /** plugin → UI: conversion finished */
-export interface DoneMessage {
-  type: 'done';
+interface DoneMessage {
+  type: "done";
   shapesCreated: number;
 }
 
 /** plugin → UI: an error occurred */
-export interface ErrorMessage {
-  type: 'error';
+interface ErrorMessage {
+  type: "error";
   message: string;
 }
 
 /** plugin → UI: theme changed */
-export interface ThemeMessage {
-  type: 'theme';
+interface ThemeMessage {
+  type: "theme";
   content: string;
 }
 
-export type PluginToUiMessage = ProgressMessage | DoneMessage | ErrorMessage | ThemeMessage;
+export type PluginToUiMessage =
+  | ProgressMessage
+  | DoneMessage
+  | ErrorMessage
+  | ThemeMessage;
 export type UiToPluginMessage = ConvertMessage;
